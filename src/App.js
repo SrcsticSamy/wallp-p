@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useInfiniteQuery} from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
 
 export default function App() {
 
