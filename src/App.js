@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInfiniteQuery} from "react-query";
 
 export default function App() {
 
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [isPageBtm, setIsPageBtm] = useState(false);
+
+  const handleScroll = () =>{
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      setIsPageBtm(true)
+    } else setIsPageBtm(false)
+  }
+
+  useEffect(() => {
+
+    window.addEventListener("scroll", handleScroll)
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+    
+  }, []);
+  
 
 
   const fetchWallpapers = async ({pageParam = null}) => {
@@ -12,11 +30,7 @@ export default function App() {
   }
 
   const {isLoading, isFetchingNextPage, hasNextPage, isError, data, fetchNextPage} = useInfiniteQuery('wallpapers', fetchWallpapers, 
-  { getNextPageParam: (lastPage, page)=>{
-    if (lastPage.data.after) return (lastPage.data.after)
-      else return undefined
-  }
-  })
+  { getNextPageParam: (lastPage)=> lastPage.data.after} )
 
   return (
     <div className="App">
@@ -30,7 +44,9 @@ export default function App() {
         :
 
         (<>
-          <button style={{padding:15, border:"2px solid cyan", backgroundColor:"black", color:"white", borderRadius:100, position:"fixed", bottom:15, right:15, cursor:"pointer"}} 
+          <button 
+          style={{padding:15, border:"2px solid cyan", backgroundColor:"black", color:"white", borderRadius:100, position:"fixed",
+          bottom:15, right:15, cursor:"pointer", opacity: isPageBtm? "1" : "0", transition:"opacity 0.6s"}} 
           disabled={!hasNextPage || isFetchingNextPage}
           onClick={()=>{
             fetchNextPage()
