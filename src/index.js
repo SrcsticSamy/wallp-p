@@ -1,23 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
+//MUI imports
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
+import CssBaseline from "@mui/material/CssBaseline";
+import darkScrollbar from '@mui/material/darkScrollbar';
+
+let theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: darkScrollbar()
+      },
     },
   },
+
+  palette:{
+    mode:'dark',
+
+    primary:{
+      main: '#31CB53'
+    },
+    secondary:{
+      main: '#F6FF81'
+    },
+    text:{
+      primary: '#D6E3E4'
+    },
+    background:{
+      default: ' #000000',
+    },
+    
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  }
 })
 
-ReactDOM.render(
-  <React.StrictMode>
-    
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+theme = responsiveFontSizes(theme);
 
-  </React.StrictMode>,
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
   document.getElementById('root')
 );
