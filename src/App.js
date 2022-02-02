@@ -1,30 +1,24 @@
-import { Box, Typography, Grid } from "@mui/material";
+import DeviceProvider from "./Context/DeviceContext"
 import Header from "./Components/Header";
-import DesktopWallpaper from "./Components/DesktopWallpaper";
-import PhoneWallpaper from "./Components/PhoneWallpaper";
+import WallpapersList from "./Components/WallpapersList";
+
+import { Box } from "@mui/material";
+
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 export default function App() {
 
   return (
-    <Box sx={{height:"1000px", textAlign:"center"}}>
+    <Box sx={{textAlign:"center"}}>
 
-      <Header/>  
+      <DeviceProvider>
 
-      <Typography variant="h1" sx={{my:5}}>Wallpapers</Typography>
+        <Header/>  
+        <WallpapersList/>
 
-      <Grid container justifyContent="space-evenly" maxWidth="lg" sx={{mx:"auto"}}>
-        <PhoneWallpaper/>
-        <PhoneWallpaper/>
-        <PhoneWallpaper/>
-        <PhoneWallpaper/>
-        <PhoneWallpaper/>
-        <PhoneWallpaper/>
-        <DesktopWallpaper/>
-        <DesktopWallpaper/>
-        <DesktopWallpaper/>
-        <DesktopWallpaper/>
+      </DeviceProvider>
 
-      </Grid>
+      {/* <ReactQueryDevtools/> */}
 
     </Box>
   );
