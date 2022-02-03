@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Fab } from "@mui/material";
 
 import { useContext } from "react";
 import { DeviceContext } from "../Context/DeviceContext";
@@ -6,6 +6,8 @@ import { DeviceContext } from "../Context/DeviceContext";
 import { useInfiniteQuery } from "react-query";
 
 import Wallpaper from "./Wallpaper";
+
+import { BsPlusCircle } from "react-icons/bs";
 
 function WallpapersList() {
 
@@ -15,7 +17,7 @@ function WallpapersList() {
     const queryName = desktop ? "desktopWallpapers" : "phoneWallpapers"
 
     const fetchWallpapers = async ({pageParam = null}) => {
-        const res = await fetch(`${baseUrl}?after=${pageParam}&limit=20`)
+        const res = await fetch(`${baseUrl}after=${pageParam}`)
         return res.json()
     }
 
@@ -26,22 +28,26 @@ function WallpapersList() {
         return (<Typography variant="h1" sx={{my:5}}>Loading</Typography>)
     }
 
+    if(isError){
+        return (<Typography variant="h1" sx={{my:5}}>An Error Has Ocurred.</Typography>)
+    }
+
     return (
-        <Box>
+        <Box mb={10}>
 
             <Typography variant="h1" sx={{my:5}}>Wallpapers</Typography>
 
             <Grid container justifyContent="space-evenly" maxWidth="lg" sx={{mx:"auto"}}>
 
-                {data.pages.map((page, i)=>{
+                {data.pages.map((page)=>{
                     return(
                             page.data.children.map((post, i)=>{
                                 if(post.data.stickied || post.data.is_gallery || post.data.selftext) return
 
                                 const resURL = post.data.preview.images[0].resolutions[2].url
-                                const imgURL = resURL.replace(/amp;/g, "")
+                                const previewURL = resURL.replace(/amp;/g, "")
 
-                                return ( <Wallpaper post={post.data} imgURL={imgURL} key={i+1}/> )
+                                return ( <Wallpaper post={post.data} preview={previewURL} key={i+1}/> )
                                 
                             })
                         
@@ -49,6 +55,17 @@ function WallpapersList() {
                 })}
                 
             </Grid>
+
+            <Fab variant="extended" color="primary" onClick={()=>fetchNextPage()} disabled={isFetchingNextPage || !hasNextPage}>
+                {isFetchingNextPage?
+                    "Loading..."
+                    :
+                    <>
+                    <BsPlusCircle style={{marginRight:10}}/>Show More
+                    </>
+                    
+                }
+            </Fab>
 
         </Box>
     );

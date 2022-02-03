@@ -14,4 +14,4 @@ Status: WIP
 
 3. [Framer Motion](https://www.framer.com/motion/)
 
-4. a TBD package for downloading the image
+4. [File Saver](https://www.npmjs.com/package/file-saver)
