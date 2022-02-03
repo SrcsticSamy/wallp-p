@@ -21,7 +21,7 @@ function WallpapersList() {
         return res.json()
     }
 
-    const {isLoading, isFetchingNextPage, hasNextPage, isError, data, fetchNextPage} = useInfiniteQuery(queryName, fetchWallpapers, 
+    const {isLoading, isFetchingNextPage, hasNextPage, isError, error, data, fetchNextPage} = useInfiniteQuery(queryName, fetchWallpapers, 
         { getNextPageParam: (lastPage)=> lastPage.data.after} )
 
     if(isLoading){
@@ -29,7 +29,12 @@ function WallpapersList() {
     }
 
     if(isError){
-        return (<Typography variant="h1" sx={{my:5}}>An Error Has Ocurred.</Typography>)
+        return (<Typography variant="h1" sx={{my:5}}>
+            An Error Has Ocurred. <br />
+            {error}
+            <br />
+
+            </Typography>)
     }
 
     return (
