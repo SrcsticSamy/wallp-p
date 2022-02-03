@@ -31,7 +31,7 @@ function WallpapersList() {
     if(isError){
         return (<Typography variant="h1" sx={{my:5}}>
             An Error Has Ocurred. <br />
-            {error}
+            {error.message}
             <br />
 
             </Typography>)
@@ -42,7 +42,7 @@ function WallpapersList() {
 
             <Typography variant="h1" sx={{my:5}}>Wallpapers</Typography>
 
-            <Grid container justifyContent="space-evenly" maxWidth="lg" sx={{mx:"auto"}}>
+            <Grid container justifyContent="space-evenly" maxWidth="false" sx={{mx:"auto"}}>
 
                 {data.pages.map((page)=>{
                     return(

@@ -25,16 +25,16 @@ function Wallpaper({post, preview}) {
   }
 
   return (
-    <Grid item md={desktop? 5 : 2} sm={desktop? 12 : 5} xs={desktop? 12: 5} mb={5} mx={0.25} p={0.25}
-       sx={{height:"26em", display:"flex", flexDirection:"column", justifyContent:"space-between",
-        bgcolor:"rgba(19,80,33,0.35)", borderRadius:"10px 10px 0 0",}}>
+    <Grid item md={desktop? 5 : 2} sm={desktop? 12 : 5} xs={desktop? 12: 12} mb={5} mx={0.25} p={0.25}
+       sx={{height:"30em", display:"flex", flexDirection:"column", justifyContent:"space-between",
+        bgcolor:"rgba(19,80,33,0.35)", borderRadius:"10px 10px 0 0", width: desktop? "100%": "fit-content"}}>
 
       <Typography variant={desktop?"subtitle1" : "subtitle2"} sx={{fontWeight:"bold",p:1}}>{ampRemove(post.title)}</Typography>
 
 
-      <Box 
+      <Box p={10}
         sx={{position:"relative", backgroundImage:`url(${preview})`, backgroundRepeat:"no-repeat", 
-        backgroundSize:"cover", backgroundPosition:"center", width:"100%" , height:"21em", mx:"auto"
+        backgroundSize:"cover", backgroundPosition:"center", width:desktop? "100%" : "15em" , height:"25em", mx:"auto"
         }} alt={post.title}>
 
             <Tooltip title="Download Wallpaper">
