@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import ReactGA from 'react-ga';
+
 
 //MUI imports
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -49,6 +54,11 @@ const queryClient = new QueryClient({
   },
 })
 
+ReactGA.initialize('UA-174306047-3');
+
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+
 ReactDOM.render(
 
   <QueryClientProvider client={queryClient}>
@@ -59,3 +69,5 @@ ReactDOM.render(
   </QueryClientProvider>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
