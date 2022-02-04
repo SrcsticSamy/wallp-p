@@ -13,11 +13,11 @@ function WallpapersList() {
 
     const [desktop] = useContext(DeviceContext)
 
-    const baseUrl = desktop ? "https://www.reddit.com/r/wallpaper/hot.json?limit=20&" : "https://www.reddit.com/r/Amoledbackgrounds/hot.json?hot.json?limit=20&"
+    const baseUrl = desktop ? `https://www.reddit.com/r/wallpaper` : `https://www.reddit.com/r/Amoledbackgrounds`
     const queryName = desktop ? "desktopWallpapers" : "phoneWallpapers"
 
     const fetchWallpapers = async ({pageParam = null}) => {
-        const res = await fetch(`${baseUrl}after=${pageParam}`)
+        const res = await fetch(`${baseUrl}/hot.json?after=${pageParam}&limit=20`)
         return res.json()
     }
 
@@ -47,7 +47,7 @@ function WallpapersList() {
                 {data.pages.map((page)=>{
                     return(
                             page.data.children.map((post, i)=>{
-                                if(!post.data.preview) return
+                                if(!post.data.preview || post.data.is_stickied===true || post.data.selftext) return
 
                                 const resURL = post.data.preview.images[0].resolutions[2].url
                                 const previewURL = resURL.replace(/amp;/g, "")

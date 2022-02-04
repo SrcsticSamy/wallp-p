@@ -1,10 +1,11 @@
 import DeviceProvider from "./Context/DeviceContext"
 import Header from "./Components/Header";
 import WallpapersList from "./Components/WallpapersList";
+import BackToTop from "./Components/BackToTop";
 
 import { Box } from "@mui/material";
 
-import { ReactQueryDevtools } from 'react-query/devtools'
+// import { ReactQueryDevtools } from 'react-query/devtools'
 
 export default function App() {
 
@@ -15,10 +16,11 @@ export default function App() {
 
         <Header/>  
         <WallpapersList/>
+        <BackToTop/>
 
       </DeviceProvider>
 
-      <ReactQueryDevtools/>
+      {/* <ReactQueryDevtools/> */}
 
     </Box>
   );

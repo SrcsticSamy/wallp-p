@@ -1,8 +1,8 @@
 import { Grid, Typography, Box, IconButton, Tooltip, Chip } from "@mui/material";
-import { saveAs } from "file-saver"
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DeviceContext } from "../Context/DeviceContext";
+import ConfirmDialog from "./ConfirmDialog";
 
 import { BsDownload } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
@@ -10,19 +10,14 @@ import { FcLike } from "react-icons/fc";
 
 function Wallpaper({post, preview}) {
 
-  const title = post.title.replace(/amp;/g, "")
+  const [openDialog, setOpenDialog] = useState(false)
 
   function ampRemove(url) {
     return url.replace(/amp;/g, "")
   }
 
-
   const [desktop] = useContext(DeviceContext)
 
-  function saveImage() {
-    const downloadURL = "https://radiant-fjord-32800.herokuapp.com/"+ampRemove(post.preview.images[0].source.url)
-    saveAs(downloadURL  , title)
-  }
 
   return (
     <Grid item lg={desktop? 5 : 2} md={desktop? 5 : 3} sm={desktop? 12 : 5} xs={desktop? 12: 8} mb={5} mx={0.25} pb={0.25}
@@ -40,7 +35,7 @@ function Wallpaper({post, preview}) {
 
 
             <Tooltip title="Download Wallpaper">
-                <IconButton color="primary" size={desktop? "medium" : "small"} onClick={saveImage}
+                <IconButton color="primary" size={desktop? "medium" : "small"} onClick={()=>setOpenDialog(true)}
                 sx={{position:"absolute", right:10, bottom:8, border:"1px solid", borderColor:"primary.main"}}>
                     <BsDownload/>
                 </IconButton>
@@ -51,6 +46,7 @@ function Wallpaper({post, preview}) {
 
       <Typography variant={desktop?"subtitle1" : "subtitle2"} sx={{fontWeight:"bold",p:1, width:desktop?"100%":"80%", mx:"auto", height:"fit-content"}}>{ampRemove(post.title)}</Typography>
 
+      <ConfirmDialog openDialog={openDialog} setOpenDialog={setOpenDialog} title={ampRemove(post.title)} downloadURL={ampRemove(post.preview.images[0].source.url)}/>
 
     </Grid>
   );
