@@ -38,7 +38,7 @@ function WallpapersList() {
     }
 
     return (
-        <Box mb={10}>
+        <Box>
 
             <Typography variant="h1" sx={{my:5}}>Wallpapers</Typography>
 
