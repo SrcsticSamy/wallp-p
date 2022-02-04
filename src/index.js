@@ -27,16 +27,16 @@ let theme = createTheme({
     mode:'dark',
 
     primary:{
-      main: '#31CB53'
+      main: '#03CC90'
     },
     secondary:{
-      main: '#F6FF81'
+      main: '#232734'
     },
     text:{
-      primary: '#D6E3E4'
+      primary: '#FFFFFF'
     },
     background:{
-      default: ' #000000',
+      default: '#353849',
     },
     
     contrastThreshold: 3,

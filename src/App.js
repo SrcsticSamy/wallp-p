@@ -18,7 +18,7 @@ export default function App() {
 
       </DeviceProvider>
 
-      {/* <ReactQueryDevtools/> */}
+      <ReactQueryDevtools/>
 
     </Box>
   );

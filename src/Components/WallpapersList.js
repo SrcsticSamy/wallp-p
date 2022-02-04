@@ -47,7 +47,7 @@ function WallpapersList() {
                 {data.pages.map((page)=>{
                     return(
                             page.data.children.map((post, i)=>{
-                                if(post.data.stickied || post.data.is_gallery || post.data.selftext) return
+                                if(!post.data.preview) return
 
                                 const resURL = post.data.preview.images[0].resolutions[2].url
                                 const previewURL = resURL.replace(/amp;/g, "")
