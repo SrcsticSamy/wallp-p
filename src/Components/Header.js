@@ -14,15 +14,23 @@ function Header() {
 
   function showPhoneWallpapers() {
     setDesktop(false)
+    window.scrollTo({
+      top:600,
+      behavior:"smooth"
+    })
   }
 
   function showDesktopWallpapers() {
     setDesktop(true)
+    window.scrollTo({
+      top:600,
+      behavior:"smooth"
+    })
   }
 
   return (
     <Grid container justifyContent="center" alignItems="center" spacing={2}
-      sx={{minHeight:'90vh', textAlign:'center', backgroundImage:`url(${bg})`, backgroundRepeat:"no-repeat", 
+      sx={{minHeight:'75vh', textAlign:'center', backgroundImage:`url(${bg})`, backgroundRepeat:"no-repeat", 
           backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment:"fixed", px:2}}>
 
       <Grid item md={7}>
