@@ -6,10 +6,9 @@ Wall-P is a website built with ReactJS to fetch images from the [AMOLED Backgrou
 
 ```
 Status: DONE!
-
 ```
 
-## Main Libraries used:
+## Libraries used:
 
 1. [React Query](https://react-query.tanstack.com/)
 

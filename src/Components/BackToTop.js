@@ -25,7 +25,7 @@ function BackToTop() {
     
 
   return (
-      <Fab color="secondary" disabled={!visible} sx={{position:"fixed", bottom:15, left:5}} onClick={scrollTop}>
+      <Fab color="secondary" disabled={!visible} sx={{position:"fixed", bottom:15, left:5}} size={visible? "large": "small"} onClick={scrollTop}>
           <BsArrowUpCircle style={{transform:"scale(1.5)"}}/>
       </Fab>
   );

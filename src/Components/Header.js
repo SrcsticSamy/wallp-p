@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <Grid container justifyContent="center" alignItems="center" spacing={2}
-      sx={{minHeight:'75vh', textAlign:'center', backgroundImage:`url(${bg})`, backgroundRepeat:"no-repeat", 
+      sx={{minHeight:'85vh', textAlign:'center', backgroundImage:`url(${bg})`, backgroundRepeat:"no-repeat", 
           backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment:"fixed", px:2}}>
 
       <Grid item md={7}>
