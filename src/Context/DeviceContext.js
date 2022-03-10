@@ -7,14 +7,11 @@ function DeviceProvider({children}) {
 
 
     const [desktop, setDesktop] = useState();
-    const [baseUrl, setBaseUrl] = useState("");
-
 
     useEffect(() => {
 
         if(window.matchMedia("only screen and (max-width: 760px)").matches){
             setDesktop(false)
-            setBaseUrl()
           } else {
             setDesktop(true)
           }
@@ -23,7 +20,7 @@ function DeviceProvider({children}) {
     
 
     return (
-        <DeviceContext.Provider value={[desktop, setDesktop, baseUrl, setBaseUrl]}>
+        <DeviceContext.Provider value={[desktop, setDesktop]}>
             {children}
         </DeviceContext.Provider>
     );
