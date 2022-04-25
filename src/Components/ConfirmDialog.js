@@ -8,7 +8,7 @@ function ConfirmDialog({openDialog, setOpenDialog, title, downloadURL}) {
 
     function saveImage() {
         setConfirmed(true)
-        saveAs(`https://radiant-fjord-32800.herokuapp.com/${downloadURL}` , title)
+        saveAs(`https://radiant-fjord-32800.herokuapp.com/${downloadURL}` , "wallpaper")
         setTimeout(()=>{
             setOpenDialog(false)
             setConfirmed(false)

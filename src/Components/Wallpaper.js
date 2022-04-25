@@ -19,7 +19,7 @@ function Wallpaper({post, preview}) {
   const [desktop] = useContext(DeviceContext)
 
   return (
-    <Grid item lg={desktop? 5 : 2} md={desktop? 5 : 3} sm={desktop? 12 : 5} xs={desktop? 12: 8} mb={5} mx={0.25} pb={0.25}
+      <Grid item lg={desktop? 5 : 2} md={desktop? 5 : 3} sm={desktop? 12 : 5} xs={desktop? 12: 8} mb={5} mx={0.25} pb={0.25}
        sx={{height:desktop? "25em" :"30em", display:"flex", flexDirection:"column", justifyContent:"space-between",
         bgcolor:"secondary.dark", borderRadius:"0 0 15px 15px", width: desktop? "100%": "15em", textAlign:"center"}}>
 
@@ -48,6 +48,7 @@ function Wallpaper({post, preview}) {
       <ConfirmDialog openDialog={openDialog} setOpenDialog={setOpenDialog} title={ampRemove(post.title)} downloadURL={ampRemove(post.preview.images[0].source.url)}/>
 
     </Grid>
+    
   );
 }
 
