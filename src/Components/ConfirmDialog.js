@@ -1,41 +1,69 @@
-import { Box, Button, Dialog, DialogContent, DialogActions } from "@mui/material";
-import { saveAs } from "file-saver"
+import {
+	Box,
+	Button,
+	Dialog,
+	DialogContent,
+	DialogActions,
+} from "@mui/material";
+import { saveAs } from "file-saver";
 import { useState } from "react";
 
-function ConfirmDialog({openDialog, setOpenDialog, title, downloadURL}) {
+function ConfirmDialog({ openDialog, setOpenDialog, title, downloadURL }) {
+	const [confirmed, setConfirmed] = useState(false);
 
-    const [confirmed, setConfirmed] = useState(false);
+	function saveImage() {
+		setConfirmed(true);
+		saveAs(
+			`https://taupe-chicken-kit.cyclic.app/${downloadURL}`,
+			"wallpaper"
+		);
+		setTimeout(() => {
+			setOpenDialog(false);
+			setConfirmed(false);
+		}, 2500);
+	}
 
-    function saveImage() {
-        setConfirmed(true)
-        saveAs(`https://radiant-fjord-32800.herokuapp.com/${downloadURL}` , "wallpaper")
-        setTimeout(()=>{
-            setOpenDialog(false)
-            setConfirmed(false)
-        }, 2500)
-      }
+	return (
+		<Dialog open={openDialog}>
+			{confirmed ? (
+				<DialogContent>
+					Your Download Should be Starting :)
+				</DialogContent>
+			) : (
+				<DialogContent>
+					Are you sure you want to download{" "}
+					<Box
+						sx={{
+							display: "inline",
+							fontWeight: "900",
+							color: "primary.main",
+						}}>
+						{title}
+					</Box>
+					?
+				</DialogContent>
+			)}
 
-
-    return (
-        <Dialog open={openDialog}>
-
-            {confirmed?
-                <DialogContent>
-                    Your Download Should be Starting :)
-                </DialogContent>
-                :
-                <DialogContent>
-                    Are you sure you want to download <Box sx={{display:"inline", fontWeight:"900", color:"primary.main"}}>{title}</Box>?
-                </DialogContent>
-            }
-            
-
-            <DialogActions>
-                <Button color="secondary" variant="contained" size="small" onClick={()=>setOpenDialog(false)} disableElevation>Cancel</Button>
-                <Button variant="contained" size="small" onClick={saveImage} disabled={confirmed} disableElevation>Download</Button>
-            </DialogActions>
-        </Dialog>
-    );
+			<DialogActions>
+				<Button
+					color="secondary"
+					variant="contained"
+					size="small"
+					onClick={() => setOpenDialog(false)}
+					disableElevation>
+					Cancel
+				</Button>
+				<Button
+					variant="contained"
+					size="small"
+					onClick={saveImage}
+					disabled={confirmed}
+					disableElevation>
+					Download
+				</Button>
+			</DialogActions>
+		</Dialog>
+	);
 }
 
 export default ConfirmDialog;
