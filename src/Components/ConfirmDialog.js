@@ -14,7 +14,7 @@ function ConfirmDialog({ openDialog, setOpenDialog, title, downloadURL }) {
 	function saveImage() {
 		setConfirmed(true);
 		saveAs(
-			`https://taupe-chicken-kit.cyclic.app/${downloadURL}`,
+			`https://web-production-6a28.up.railway.app/${downloadURL}`,
 			"wallpaper"
 		);
 		setTimeout(() => {
