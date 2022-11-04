@@ -98,7 +98,6 @@ function WallpapersList() {
 								: post.data.preview.images[0].resolutions[3]
 										.url;
 							const previewURL = resURL.replace(/amp;/g, "");
-							console.log(previewURL);
 							return (
 								<Wallpaper
 									post={post.data}

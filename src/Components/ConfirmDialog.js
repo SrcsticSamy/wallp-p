@@ -14,7 +14,7 @@ function ConfirmDialog({ openDialog, setOpenDialog, title, downloadURL }) {
 	function saveImage() {
 		setConfirmed(true);
 		saveAs(
-			`https://web-production-6a28.up.railway.app/${downloadURL}`,
+			`https://wallp-cors-anywhere.onrender.com/${downloadURL}`,
 			"wallpaper"
 		);
 		setTimeout(() => {
