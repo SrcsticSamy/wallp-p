@@ -94,9 +94,8 @@ function WallpapersList() {
 					return page.data.children.map((post, i) => {
 						if (post.data?.preview?.images && !post.data.stickied) {
 							const resURL = desktop
-								? post.data.preview.images[0].resolutions[2].url
-								: post.data.preview.images[0].resolutions[3]
-										.url;
+								? post.data.preview.images[0].resolutions[3].url
+								: post.data.preview.images[0].resolutions[2].url;
 							const previewURL = resURL.replace(/amp;/g, "");
 							return (
 								<Wallpaper
@@ -105,7 +104,7 @@ function WallpapersList() {
 									key={i + 1}
 								/>
 							);
-						} else return;
+						} else return null;
 					});
 				})}
 			</Grid>
